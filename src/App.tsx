@@ -1,5 +1,4 @@
 import Brand from "./assets/img/5119xfYm0EL._AC_SL1250_.jpg"
-import './App.css'
 import { useEffect } from "react";
 
 function App() {
