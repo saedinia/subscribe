@@ -24,8 +24,7 @@ jobs:
       - name: Build
         run: npm run build  # Adjust as per your build command
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          deploy_key: ${{ secrets.ACCESS_TOKEN }}
-          publish_dir: ./build  # Replace with your build output folder
+          folder: ./build # The folder the action should deploy.
