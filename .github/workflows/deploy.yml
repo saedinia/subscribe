@@ -18,12 +18,18 @@ jobs:
         with:
           node-version: '20'  # Change this to your Node.js version
 
+      - name: Git config user.email
+        run: git config --global user.email "s.saedinia@gmail.com"
+
+      - name: Git config user.name
+        run: git config --global user.email "Sadegh Saedi Nia"
+        
       - name: Install dependencies
         run: npm install  # or yarn install
 
       - name: Install rollup
         run: npm install rollup
-
+      
       - name: Build
         run: npm run build  # Adjust as per your build command
 
