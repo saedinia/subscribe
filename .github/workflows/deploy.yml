@@ -18,20 +18,13 @@ jobs:
         with:
           node-version: '20'  # Change this to your Node.js version
 
-      - name: Git config user.email
-        run: git config --global user.email "s.saedinia@gmail.com"
-
-      - name: Git config user.name
-        run: git config --global user.email "Sadegh Saedi Nia"
-        
       - name: Install dependencies
         run: npm install  # or yarn install
 
-      - name: Install rollup
-        run: npm install rollup
-      
       - name: Build
         run: npm run build  # Adjust as per your build command
 
       - name: Deploy
-        run: npm run deploy  # Adjust as per your deploy command
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./dist # The folder the action should deploy.
