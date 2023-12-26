@@ -6,7 +6,35 @@ on:
       - main  # Change this to your branch name if needed
 
 jobs:
-  build-and-deploy:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Install Node.js and npm
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build
+    
+    - name: Upload pages artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: ./dist
+        name: github-pages
+        retention-days: 1
+
+  bdeploy:
+    # Add a dependency to the build job
+    needs: build
+
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
       pages: write      # to deploy to Pages
@@ -20,20 +48,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Install Node.js and npm
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build
-      run: npm run build
-
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v3
       with:
