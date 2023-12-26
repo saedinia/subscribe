@@ -49,8 +49,6 @@ jobs:
 
     steps:
     - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v3
+      uses: actions/deploy-pages@v4
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages  # Change this to your desired branch for deployment
-        FOLDER: dist  # Replace 'build' with your build output folder
+        token: ${{ github.token }}
